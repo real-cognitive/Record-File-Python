@@ -7,6 +7,8 @@ import Project.proj_backend as bckend
 
 if "login" not in st.session_state:
     st.switch_page("pages/account.py")
+
+    
 @st.dialog("Create Playlist")
 def create_playlist_dialog(songs = []):
     name = st.text_input("Name of playlist")
@@ -22,10 +24,7 @@ if "close_dialog" not in st.session_state:
     
     st.session_state.close_dialog = False
 
-  
-
 # __main__
-
 
 st.title("Your Playlists")
 st.space(2)
@@ -34,12 +33,6 @@ if st.button("Create Playlist",):
     st.session_state.close_dialog = False
     if not st.session_state.close_dialog:
         create_playlist_dialog()
-# if st.session_state.close_popover:
-#     st.spinner(text="Loading..", show_time=True)
-#     time.sleep(2)
-#     st.session_state.close_popover = False
-#     print(st.session_state.close_popover)
-#     st.rerun()
     
 st.space(1)
 for x in bckend.get_playlists(st.session_state.uid):
