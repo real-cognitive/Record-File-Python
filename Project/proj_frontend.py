@@ -1,5 +1,6 @@
 import streamlit as st
 
+#Defining the structure of the webpage, That is how the page hiearchy would appear on sidebar
 pages = {
     "Songs": [
         st.Page("./pages/home.py", title="Search new songs!"),
@@ -12,5 +13,5 @@ pages = {
 
 }
 
-pg = st.navigation(pages)
-pg.run()
+pg = st.navigation(pages) #Using the defined structure to create a page with navigation
+pg.run() #Running the first page of the entire structure

@@ -8,8 +8,10 @@ import Project.proj_backend as bckend
 st.title("Search by mood") #Title
 if "login" not in st.session_state:
     st.switch_page("pages/account.py")
-if "last_mood" not in st.session_state: #Adding the cache variable
+if "last_mood" not in st.session_state: #Adding the cached variable
     st.session_state.last_mood = ""
+
+
 
 mood = st.selectbox("Mood",
              ["","Sad", "Calm", "Angry", "Happy", "Romantic", "Energetic", "Varied"],

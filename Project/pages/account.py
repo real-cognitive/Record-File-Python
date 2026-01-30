@@ -3,21 +3,21 @@ import streamlit as st
 import Project.proj_backend as bckend
 
 
-def logout(): 
+def logout():  #Deletes all stored variables, which means deletes the stored uid as well.
     for x in st.session_state:
         del st.session_state[x]
     print([x for x in st.session_state])
 
 
-if "login" not in st.session_state:
+if "login" not in st.session_state: #Adding login variable
     st.session_state.login = True
 
 
-@st.dialog("Login" if st.session_state.login else "Signup", dismissible=False)
+@st.dialog("Login" if st.session_state.login else "Signup", dismissible=False) #Dialog box
 def auth_dialog():
-    username = st.text_input("**Username**")
+    username = st.text_input("**Username**") #Accepting Username and password
     password = st.text_input("**Password**")
-    if "login_err_text" in st.session_state:
+    if "login_err_text" in st.session_state: #Showing the custom errors raised
         st.error(st.session_state.login_err_text)
     with st.container(horizontal=True, horizontal_alignment="distribute"):
         if st.button("Submit"):
@@ -26,7 +26,7 @@ def auth_dialog():
                 st.session_state.uid = uid
                 st.rerun()
             except ValueError as e:
-                st.session_state.login_err_text = e
+                st.session_state.login_err_text = e #Storing error in variable
                 st.rerun()
         if st.button(f"###### {"Signup" if st.session_state.login else "Login"}", type="tertiary",):
             st.session_state.login = False if st.session_state.login else True
@@ -37,7 +37,7 @@ def auth_dialog():
 
 if "uid" not in st.session_state:
     auth_dialog()
-    st.session_state.auth_toast = True
+    st.session_state.auth_toast = True #Showing the dialog of successful login
 
 
 st.write("## Account options")

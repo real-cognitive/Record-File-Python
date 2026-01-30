@@ -7,9 +7,11 @@ import Project.proj_backend as backend
 
 # This includes General components for the site
 
+
 # Setting a cache variable
 if "open_action_dialog" not in st.session_state:
     st.session_state.open_action_dialog = False
+
 
 # Function to display song song data as a card
 def song_container(song,onclick = "none", large = True, act = True, playlist = None):
@@ -34,6 +36,7 @@ def song_container(song,onclick = "none", large = True, act = True, playlist = N
                 else:
                     pass
 
+
 @st.dialog("Add to playlist")
 def add(song): #Adding song
     l_playlist = backend.get_playlists(uid = st.session_state.uid) # Getting list of all playlists
@@ -47,8 +50,10 @@ def add(song): #Adding song
             st.session_state.open_action_dialog = False #Closing Dialog
             st.rerun() #Refresh
 
+
 def dialogFormat(song): # Method of displaying choices 
     return str(song)+"A"
+
 
 def remove(song, playlist): #Removing Songs
     playlist["songs"].remove(song)
